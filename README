@@ -1,0 +1,7 @@
+Alarm Me!
+
+This application aims to install a system tray application 
+which will keep note of how many hours you stay in office (or where-ever)
+It will take a pre-configured time and note the in-time, out-time and
+total time spent along with shortfall. All information will be 
+tabulated in a properties file format.
