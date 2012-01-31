@@ -7,7 +7,7 @@ package learning.alarm.timer;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.sql.Timestamp;
-import static learning.alarm.util.Constants.TIMESTAMP_STORE;
+import learning.alarm.util.Constants;
 /**
  *
  * @author ubose
@@ -17,15 +17,19 @@ public class AlarmTimeStore {
     private long startTime = 0L;
     private long currentTime = 0L;
     private long endTime = 0L;
-    private long oneHour = 0L;
     private long toBeDoneHour = 0L;
-
-    public AlarmTimeStore() {
-
+    
+    
+    public AlarmTimeStore(double toSpend) {
         startTime = System.currentTimeMillis();
         currentTime = System.currentTimeMillis();
-        oneHour = 60 * 60 * 1000;//60000; // Reduced for debugging //
-        toBeDoneHour = (long) (oneHour * 8.25);
+        toBeDoneHour = (long) (Constants.ONE_HOUR * toSpend);
+    }
+
+    public AlarmTimeStore(long startTime, double toSpend) {
+        this.startTime = startTime;
+        currentTime = System.currentTimeMillis();
+        toBeDoneHour = (long) (Constants.ONE_HOUR * toSpend);
     }
 
     public String getTimeLeft() {
@@ -45,10 +49,6 @@ public class AlarmTimeStore {
 
     public long getEndTime() {
         return endTime;
-    }
-
-    public long getOneHour() {
-        return oneHour;
     }
 
     public long getStartTime() {
@@ -106,7 +106,7 @@ public class AlarmTimeStore {
             .append(this.getTotalTimeSpent());
 
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(TIMESTAMP_STORE, true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(Constants.CONFIG.TIMESTAMP_STORE, true));
 
             bw.append(logBuilder);
 

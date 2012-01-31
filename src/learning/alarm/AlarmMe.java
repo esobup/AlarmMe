@@ -16,7 +16,7 @@ public class AlarmMe {
     
 
     public static void main(String[] args) {
-        AlarmTimeStore alarmTimeStore = new AlarmTimeStore();
+        AlarmTimeStore alarmTimeStore = new AlarmTimeStore(414141);
         //AlarmTimer alarmTimer = new AlarmTimer(alarmTimeStore);
         //alarmTimer.startTimer();
 
